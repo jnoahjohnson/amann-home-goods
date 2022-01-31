@@ -1,5 +1,13 @@
 import { LoaderFunction, useLoaderData } from "remix";
 import ProductGrid from "~/components/ProductGrid";
+import type { MetaFunction } from "remix";
+
+export const meta: MetaFunction = () => {
+  return {
+    title: "Amann Home Goods",
+    description: "Incredible products for your incredible home.",
+  };
+};
 
 export let loader: LoaderFunction = async () => {
   const params = {
