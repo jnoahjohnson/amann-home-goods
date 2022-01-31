@@ -46,7 +46,7 @@ export default function Index() {
         Amann Home Goods
       </h1> */}
       <div className="text-center w-full flex items-center justify-center mb-2">
-        <img src="/images/slice1.png" className="h-16" />
+        <img src="/images/logo.png" className="h-28" />
       </div>
       <ProductGrid products={products} />
     </div>
