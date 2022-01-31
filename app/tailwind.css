@@ -553,6 +553,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   height: 1.25rem;
 }
 
+.h-auto {
+  height: auto;
+}
+
 .w-full {
   width: 100%;
 }
@@ -563,6 +567,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .max-w-7xl {
   max-width: 80rem;
+}
+
+.max-w-6xl {
+  max-width: 72rem;
 }
 
 .flex-shrink-0 {
@@ -628,6 +636,11 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .p-4 {
   padding: 1rem;
+}
+
+.py-4 {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 }
 
 .pt-10 {

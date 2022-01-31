@@ -21,13 +21,19 @@ export let loader: LoaderFunction = async () => {
   };
 };
 
+export function headers() {
+  return {
+    "Cache-Control": "max-age=86400, s-maxage=86400",
+  };
+}
+
 export default function Index() {
   let { products } = useLoaderData();
 
   console.log(products[0].price);
 
   return (
-    <div>
+    <div className="mx-auto max-w-6xl py-4">
       <ProductGrid products={products} />
     </div>
   );

@@ -82,6 +82,11 @@ export default function ProductGrid({ products }: { products: any }) {
               key={product.position}
               className="group relative p-4 border-r border-b border-gray-200 sm:p-6"
             >
+              {/* <img
+                src={product.image}
+                alt={product.title}
+                className="w-full h-auto"
+              /> */}
               <div className="rounded-lg overflow-hidden bg-gray-200 aspect-w-1 aspect-h-1 group-hover:opacity-75">
                 <img
                   src={product.image}
