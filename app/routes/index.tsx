@@ -24,9 +24,16 @@ export let loader: LoaderFunction = async () => {
 
   console.log(jsonData);
 
-  return {
+  let body = JSON.stringify({
     products: jsonData.seller_products ?? null,
-  };
+  });
+
+  return new Response(body, {
+    headers: {
+      "Content-Type": "application/json",
+      "Cache-Control": "s-maxage=86400",
+    },
+  });
 };
 
 export function headers() {
