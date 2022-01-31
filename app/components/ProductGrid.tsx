@@ -71,6 +71,15 @@ function classNames(...classes) {
 // { products }: { products: any }
 
 export default function ProductGrid({ products }: { products: any }) {
+  const formatCurrency = (currency: string) => {
+    var a = parseFloat(currency);
+
+    var options = { style: "currency", currency: "USD" };
+
+    let formatted = new Intl.NumberFormat("en-US", options).format(a);
+
+    return formatted;
+  };
   return (
     <div className="bg-white">
       <div className="max-w-7xl mx-auto overflow-hidden sm:px-6 lg:px-8">
@@ -87,11 +96,11 @@ export default function ProductGrid({ products }: { products: any }) {
                 alt={product.title}
                 className="w-full h-auto"
               /> */}
-              <div className="rounded-lg overflow-hidden bg-gray-200 aspect-w-1 aspect-h-1 group-hover:opacity-75">
+              <div className="rounded-lg overflow-hidden bg-white aspect-w-1 aspect-h-1 group-hover:opacity-75">
                 <img
                   src={product.image}
                   alt={product.title}
-                  className="w-full h-full object-center object-cover"
+                  className="w-full h-full object-center object-contain"
                 />
               </div>
               <div className="pt-10 pb-4 text-center">
@@ -123,7 +132,7 @@ export default function ProductGrid({ products }: { products: any }) {
                 </div>
                 <p className="mt-4 text-base font-medium text-gray-900">
                   {product.price?.value
-                    ? `$${product.price.value}`
+                    ? `${formatCurrency(product.price.value)}`
                     : "Check Price on Amazon"}
                 </p>
               </div>

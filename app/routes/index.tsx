@@ -42,6 +42,12 @@ export default function Index() {
 
   return (
     <div className="mx-auto max-w-6xl py-4">
+      {/* <h1 className="text-center text-4xl font-semibold mb-2">
+        Amann Home Goods
+      </h1> */}
+      <div className="text-center w-full flex items-center justify-center mb-2">
+        <img src="/images/slice1.png" className="h-16" />
+      </div>
       <ProductGrid products={products} />
     </div>
   );
