@@ -117,7 +117,9 @@ export default function ProductGrid({ products }: { products: any }) {
                   </p>
                 </div>
                 <p className="mt-4 text-base font-medium text-gray-900">
-                  {`$${product.price?.value ?? "00.00"}`}
+                  {product.price?.value
+                    ? `$${product.price.value}`
+                    : "Check Price on Amazon"}
                 </p>
               </div>
             </div>
