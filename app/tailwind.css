@@ -545,16 +545,16 @@ Ensure the default browser behavior of the `hidden` attribute.
   display: grid;
 }
 
+.h-auto {
+  height: auto;
+}
+
 .h-full {
   height: 100%;
 }
 
 .h-5 {
   height: 1.25rem;
-}
-
-.h-auto {
-  height: auto;
 }
 
 .w-full {
