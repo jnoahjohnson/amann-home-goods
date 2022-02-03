@@ -26,6 +26,16 @@ export default function App() {
         <Meta />
         <Links />
       </head>
+      {/* <script
+        async
+        src="https://www.googletagmanager.com/gtag/js?id=UA-219136583-1"
+      ></script>
+      <script>
+        window.dataLayer = window.dataLayer || []; function gtag()
+        {dataLayer.push(arguments)}
+        gtag('js', new Date()); gtag('config', 'UA-219136583-1');
+      </script> */}
+
       <body>
         <Outlet />
         <ScrollRestoration />
