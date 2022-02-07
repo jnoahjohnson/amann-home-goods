@@ -1,4 +1,4 @@
-import { LoaderFunction, useLoaderData } from "remix";
+import { LoaderFunction, useLoaderData, useParams } from "remix";
 import ProductGrid from "~/components/ProductGrid";
 import type { MetaFunction } from "remix";
 import { Link } from "react-router-dom";
@@ -10,7 +10,7 @@ export const meta: MetaFunction = () => {
   };
 };
 
-export let loader: LoaderFunction = async () => {
+export let loader: LoaderFunction = async ({ params }) => {
   // const params = {
   //   api_key: "B27347C99C1242A5B81DD3FBB4636A94",
   //   type: "seller_products",
@@ -18,7 +18,7 @@ export let loader: LoaderFunction = async () => {
   //   seller_id: "A1EEYPEVF7DX6F",
   // };
   let data = await fetch(
-    `https://api.rainforestapi.com/request?api_key=B27347C99C1242A5B81DD3FBB4636A94&type=seller_products&amazon_domain=amazon.com&seller_id=A1EEYPEVF7DX6F`
+    `https://api.rainforestapi.com/request?api_key=B27347C99C1242A5B81DD3FBB4636A94&type=seller_products&amazon_domain=amazon.com&seller_id=A1EEYPEVF7DX6F&page=${params.page}`
   );
 
   let jsonData = await data.json();
@@ -44,10 +44,15 @@ export function headers() {
   };
 }
 
-export default function Index() {
+export default function PageComponent() {
   let { products, numPages } = useLoaderData();
+  let { page } = useParams();
 
-  console.log(numPages);
+  console.log(numPages, page);
+
+  if (typeof page !== "string") {
+    return <div>Error</div>;
+  }
 
   return (
     <div className="mx-auto max-w-6xl py-4">
@@ -75,10 +80,20 @@ export default function Index() {
         </li>
       </ul>
       <ProductGrid products={products} />
-      <div className="max-w-7xl mx-auto overflow-hidden sm:px-6 lg:px-8 flex items-center justify-between">
-        <div></div>
-        {numPages > 1 ? <Link to="/2">Next Page</Link> : null}
-      </div>
+      <ul className="w-full flex items-center justify-between pt-1 pb-4 max-w-7xl mx-auto overflow-hidden sm:px-6 lg:px-8">
+        {parseInt(page) > 1 ? (
+          <li>
+            <Link to={`/${parseInt(page) - 1}`}>Previous Page</Link>
+          </li>
+        ) : (
+          <li></li>
+        )}
+        {parseInt(page) + 1 <= parseInt(numPages) ? (
+          <li>
+            <Link to={`/${parseInt(page) + 1}`}>Next Page</Link>
+          </li>
+        ) : null}
+      </ul>
     </div>
   );
 }
