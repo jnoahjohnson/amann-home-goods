@@ -7,7 +7,9 @@ import {
   ScrollRestoration,
 } from "remix";
 import type { MetaFunction } from "remix";
+import ReactGA from "react-ga";
 import styles from "./tailwind.css";
+import { useEffect } from "react";
 
 export function links() {
   return [{ rel: "stylesheet", href: styles }];
@@ -18,6 +20,10 @@ export const meta: MetaFunction = () => {
 };
 
 export default function App() {
+  useEffect(() => {
+    ReactGA.initialize("UA-219136583-1");
+  }, []);
+
   return (
     <html lang="en">
       <head>
@@ -26,6 +32,16 @@ export default function App() {
         <Meta />
         <Links />
       </head>
+      {/* <script
+        async
+        src="https://www.googletagmanager.com/gtag/js?id=UA-219136583-1"
+      ></script>
+      <script>
+        window.dataLayer = window.dataLayer || []; function gtag()
+        {dataLayer.push(arguments)}
+        gtag('js', new Date()); gtag('config', 'UA-219136583-1');
+      </script> */}
+
       <body>
         <Outlet />
         <ScrollRestoration />
