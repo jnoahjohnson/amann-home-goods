@@ -31,7 +31,7 @@ export let loader: LoaderFunction = async () => {
   return new Response(body, {
     headers: {
       "Content-Type": "application/json",
-      "Cache-Control": "s-maxage=86400",
+      "Cache-Control": "s-maxage=86400, max-age=86400, public",
     },
   });
 };
