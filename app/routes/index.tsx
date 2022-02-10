@@ -59,9 +59,7 @@ export default function Index() {
       </div>
       <ul className="mx-auto py-2 flex items-center justify-center space-x-4 text-xl font-semibold flex-wrap max-w-full">
         <li className="text-gray-800 hover:text-gray-600">
-          <a href="https://www.amazon.com/shops/amannhomegoods&tag=amannhomegood-20">
-            Store Home
-          </a>
+          <a href="https://www.amazon.com/shops/amannhomegoods">Store Home</a>
         </li>
         <li className="text-gray-800 hover:text-gray-600">
           <a href="https://www.amazon.com/Best-Sellers/zgbs?&linkCode=ll2&tag=amannhomegood-20&linkId=5a44ab3908fbce312dcaaa61ca1f9f66&language=en_US&ref_=as_li_ss_tl">
