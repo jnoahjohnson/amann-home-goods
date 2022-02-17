@@ -18,7 +18,7 @@ export let loader: LoaderFunction = async () => {
   //   seller_id: "A1EEYPEVF7DX6F",
   // };
   let data = await fetch(
-    `https://api.rainforestapi.com/request?api_key=B27347C99C1242A5B81DD3FBB4636A94&type=seller_products&amazon_domain=amazon.com&seller_id=A1EEYPEVF7DX6F`
+    `https://api.rainforestapi.com/request?api_key=F6E7C0A1462441168FEFF71B8AFF4D36&type=seller_products&amazon_domain=amazon.com&seller_id=A1EEYPEVF7DX6F`
   );
 
   let jsonData = await data.json();
