@@ -17,9 +17,7 @@ export let loader: LoaderFunction = async () => {
   //   amazon_domain: "amazon.com",
   //   seller_id: "A1EEYPEVF7DX6F",
   // };
-  let data = await fetch(
-    `https://api.rainforestapi.com/request?api_key=F6E7C0A1462441168FEFF71B8AFF4D36&type=seller_products&amazon_domain=amazon.com&seller_id=A1EEYPEVF7DX6F`
-  );
+  let data = await fetch(`https://amazon-amann.fly.dev/products?page=1`);
 
   let jsonData = await data.json();
 

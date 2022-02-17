@@ -1,0 +1,47 @@
+{
+  "version": "14273a53",
+  "entry": {
+    "module": "/build/entry.client-A6Z7KGGM.js",
+    "imports": [
+      "/build/_shared/chunk-JR27QNO7.js"
+    ]
+  },
+  "routes": {
+    "root": {
+      "id": "root",
+      "path": "",
+      "module": "/build/root-SQ5PG7D3.js",
+      "hasAction": false,
+      "hasLoader": false,
+      "hasCatchBoundary": false,
+      "hasErrorBoundary": false
+    },
+    "routes/$page": {
+      "id": "routes/$page",
+      "parentId": "root",
+      "path": ":page",
+      "module": "/build/routes/$page-K34AKMO3.js",
+      "imports": [
+        "/build/_shared/chunk-UVONZU7U.js"
+      ],
+      "hasAction": false,
+      "hasLoader": true,
+      "hasCatchBoundary": false,
+      "hasErrorBoundary": false
+    },
+    "routes/index": {
+      "id": "routes/index",
+      "parentId": "root",
+      "index": true,
+      "module": "/build/routes/index-YFOSB5S4.js",
+      "imports": [
+        "/build/_shared/chunk-UVONZU7U.js"
+      ],
+      "hasAction": false,
+      "hasLoader": true,
+      "hasCatchBoundary": false,
+      "hasErrorBoundary": false
+    }
+  },
+  "url": "/build/manifest-14273A53.js"
+}
