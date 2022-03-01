@@ -56,29 +56,6 @@ export default function PageComponent() {
 
   return (
     <div className="mx-auto max-w-6xl py-4">
-      {/* <h1 className="text-center text-4xl font-semibold mb-2">
-        Amann Home Goods
-      </h1> */}
-      <div className="text-center w-full flex items-center justify-center mb-2">
-        <img src="/images/logo.png" className="h-28" />
-      </div>
-      <ul className="mx-auto py-2 flex items-center justify-center space-x-4 text-xl font-semibold flex-wrap max-w-full">
-        <li className="text-gray-800 hover:text-gray-600">
-          <a href="https://www.amazon.com/shops/amannhomegoods&tag=amannhomegood-20">
-            Store Home
-          </a>
-        </li>
-        <li className="text-gray-800 hover:text-gray-600">
-          <a href="https://www.amazon.com/Best-Sellers/zgbs?&linkCode=ll2&tag=amannhomegood-20&linkId=5a44ab3908fbce312dcaaa61ca1f9f66&language=en_US&ref_=as_li_ss_tl">
-            Amazon Best Sellers
-          </a>
-        </li>
-        <li className="text-gray-800 hover:text-gray-600">
-          <a href="https://www.amazon.com/clearance/s?k=clearance+items&linkCode=ll2&tag=amannhomegood-20&linkId=109e6256f4a100c07101a35b1601f9b2&language=en_US&ref_=as_li_ss_tl">
-            Amazon Clearance Items
-          </a>
-        </li>
-      </ul>
       <ProductGrid products={products} />
       <ul className="w-full flex items-center justify-between pt-1 pb-4 max-w-7xl mx-auto overflow-hidden sm:px-6 lg:px-8 mt-2">
         {parseInt(page) > 1 ? (
@@ -104,6 +81,17 @@ export default function PageComponent() {
           </li>
         ) : null}
       </ul>
+    </div>
+  );
+}
+
+export function ErrorBoundary() {
+  return (
+    <div className="w-full text-center px-2 mt-10">
+      <h1 className="text-xl">
+        There was an issue getting the products. Please try again later or check
+        out our links above.
+      </h1>
     </div>
   );
 }
