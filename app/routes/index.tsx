@@ -71,9 +71,13 @@ export default function Index() {
         </li>
       </ul>
       <ProductGrid products={products} />
-      <div className="max-w-7xl mx-auto overflow-hidden sm:px-6 lg:px-8 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto overflow-hidden sm:px-6 lg:px-8 flex items-center justify-between mt-2">
         <div></div>
-        {numPages > 1 ? <Link to="/2">Next Page</Link> : null}
+        {numPages > 1 ? (
+          <Link to="/2" className="px-2 py-1 bg-gray-300 text-gray-800 rounded">
+            Next Page &gt;
+          </Link>
+        ) : null}
       </div>
     </div>
   );

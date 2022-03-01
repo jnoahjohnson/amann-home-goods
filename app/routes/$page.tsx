@@ -80,17 +80,27 @@ export default function PageComponent() {
         </li>
       </ul>
       <ProductGrid products={products} />
-      <ul className="w-full flex items-center justify-between pt-1 pb-4 max-w-7xl mx-auto overflow-hidden sm:px-6 lg:px-8">
+      <ul className="w-full flex items-center justify-between pt-1 pb-4 max-w-7xl mx-auto overflow-hidden sm:px-6 lg:px-8 mt-2">
         {parseInt(page) > 1 ? (
           <li>
-            <Link to={`/${parseInt(page) - 1}`}>Previous Page</Link>
+            <Link
+              to={`/${parseInt(page) - 1}`}
+              className="px-2 py-1 bg-gray-300 text-gray-800 rounded"
+            >
+              {"<"} Previous Page
+            </Link>
           </li>
         ) : (
           <li></li>
         )}
         {parseInt(page) + 1 <= parseInt(numPages) ? (
           <li>
-            <Link to={`/${parseInt(page) + 1}`}>Next Page</Link>
+            <Link
+              to={`/${parseInt(page) + 1}`}
+              className="px-2 py-1 bg-gray-300 text-gray-800 rounded"
+            >
+              Next Page &gt;
+            </Link>
           </li>
         ) : null}
       </ul>
