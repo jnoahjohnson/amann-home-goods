@@ -105,7 +105,7 @@ export default function ProductGrid({ products }: { products: any }) {
               </div>
               <div className="pt-10 pb-4 text-center">
                 <h3 className="text-sm font-medium text-gray-900">
-                  <a href={`${product.link}&tag=amannhomegood-20`}>
+                  <a href={`${product.link}&tag=amannhomego04-20`}>
                     <span aria-hidden="true" className="absolute inset-0" />
                     {product.title}
                   </a>
