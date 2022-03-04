@@ -5,7 +5,7 @@ export default function Links() {
     <div className="grid grid-cols-1 md:grid-cols-3 gap-4 py-8">
       <LinkCard
         title="Store Home"
-        link="https://www.amazon.com/shops/amannhomegoods&tag=amannhomegood-20"
+        link="https://www.amazon.com/s?i=merchant-items&me=A1EEYPEVF7DX6F&linkCode=ll2&tag=amannhomegood-20&linkId=0ff135e41b42b3212aad27b69324a5cb&language=en_US&ref_=as_li_ss_tl"
         img="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8c2hvcHBpbmd8ZW58MHx8MHx8&auto=format&fit=crop&w=1000&q=60"
       />
       <LinkCard
