@@ -3,7 +3,7 @@ export default function FeaturedProduct() {
     <div className="relative w-full h-[300px] bg-white p-4 rounded shadow overflow-hidden">
       <div className="h-full flex flex-col justify-center items-start z-40 relative">
         <p className="font-bold text-lg text-sky-800">New Arrival!</p>
-        <h1 className="text-5xl mb-3 bg-white sm:bg-transparent max-w-lg">
+        <h1 className="text-5xl mb-3  max-w-lg">
           Reusable Silicone Drinking Straws
         </h1>
         <a
@@ -18,6 +18,7 @@ export default function FeaturedProduct() {
         src="/images/straws.jpg"
         className="absolute right-12 -bottom-2 rotate-2 w-64 z-10"
       />
+      <div className="absolute z-10 inset-0 w-full h-full bg-white opacity-50 sm:hidden" />
     </div>
   );
 }
