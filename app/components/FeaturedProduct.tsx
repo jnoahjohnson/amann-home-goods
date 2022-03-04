@@ -1,6 +1,6 @@
 export default function FeaturedProduct() {
   return (
-    <div className="relative w-full h-[300px] bg-white p-4 rounded shadow overflow-hidden">
+    <div className="relative w-full h-[300px] bg-white p-8 rounded shadow overflow-hidden">
       <div className="h-full flex flex-col justify-center items-start z-40 relative">
         <p className="font-bold text-lg text-sky-800">New Arrival!</p>
         <h1 className="text-5xl mb-3  max-w-lg">

@@ -10,6 +10,7 @@ import type { MetaFunction } from "remix";
 import ReactGA from "react-ga";
 import styles from "./tailwind.css";
 import { useEffect } from "react";
+import LinkCard from "./components/LinkCard";
 
 export function links() {
   return [{ rel: "stylesheet", href: styles }];
@@ -42,11 +43,11 @@ export default function App() {
         gtag('js', new Date()); gtag('config', 'UA-219136583-1');
       </script> */}
 
-      <body className="pt-4">
+      <body className="pt-8 bg-slate-50">
         <div className="text-center w-full flex items-center justify-center mb-2">
-          <img src="/images/logo.png" className="h-28" />
+          <img src="/images/logo.png" className="h-24" />
         </div>
-        <ul className="mx-auto py-2 flex items-center justify-center space-x-4 text-xl font-semibold flex-wrap max-w-full">
+        {/* <ul className="mx-auto py-2 flex items-center justify-center space-x-4 text-xl font-semibold flex-wrap max-w-full">
           <li className="text-gray-800 hover:text-gray-600">
             <a href="https://www.amazon.com/shops/amannhomegoods&tag=amannhomegood-20">
               Store Home
@@ -62,7 +63,8 @@ export default function App() {
               Amazon Clearance Items
             </a>
           </li>
-        </ul>
+        </ul> */}
+
         <Outlet />
         <ScrollRestoration />
         <Scripts />

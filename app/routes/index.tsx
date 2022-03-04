@@ -3,6 +3,7 @@ import ProductGrid from "~/components/ProductGrid";
 import type { MetaFunction } from "remix";
 import { Link } from "react-router-dom";
 import FeaturedProduct from "~/components/FeaturedProduct";
+import LinkCard from "~/components/LinkCard";
 
 export const meta: MetaFunction = () => {
   return {
@@ -53,12 +54,32 @@ export default function Index() {
       <div>
         <FeaturedProduct />
       </div>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 py-8">
+        <LinkCard
+          title="Store Home"
+          link="https://www.amazon.com/shops/amannhomegoods&tag=amannhomegood-20"
+          img="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8c2hvcHBpbmd8ZW58MHx8MHx8&auto=format&fit=crop&w=1000&q=60"
+        />
+        <LinkCard
+          title="Amazon Best Sellers"
+          link="https://www.amazon.com/Best-Sellers/zgbs?&linkCode=ll2&tag=amannhomegood-20&linkId=5a44ab3908fbce312dcaaa61ca1f9f66&language=en_US&ref_=as_li_ss_tl"
+          img="https://images.unsplash.com/photo-1633174524827-db00a6b7bc74?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1796&q=80"
+        />
+        <LinkCard
+          title="Amazon Clearance"
+          link="https://www.amazon.com/clearance/s?k=clearance+items&linkCode=ll2&tag=amannhomegood-20&linkId=109e6256f4a100c07101a35b1601f9b2&language=en_US&ref_=as_li_ss_tl"
+          img="https://images.unsplash.com/photo-1557821552-17105176677c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2232&q=80"
+        />
+      </div>
       <h1 className="font-bold text-4xl pt-6 pb-4">All Products</h1>
       <ProductGrid products={products} />
-      <div className="max-w-7xl mx-auto overflow-hidden sm:px-6 lg:px-8 flex items-center justify-between mt-2">
+      <div className="max-w-7xl mx-auto overflow-hidden flex items-center justify-between mt-2">
         <div></div>
         {numPages > 1 ? (
-          <Link to="/2" className="px-2 py-1 bg-gray-300 text-gray-800 rounded">
+          <Link
+            to="/2"
+            className="px-2 py-1 bg-white text-gray-800 rounded text-lg"
+          >
             Next Page &gt;
           </Link>
         ) : null}

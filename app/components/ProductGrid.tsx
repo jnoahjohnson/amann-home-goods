@@ -81,15 +81,15 @@ export default function ProductGrid({ products }: { products: any }) {
     return formatted;
   };
   return (
-    <div className="bg-white">
+    <div className="">
       <div className="max-w-7xl mx-auto overflow-hidden">
         <h2 className="sr-only">Products</h2>
 
-        <div className="-mx-px border-l border-gray-200 grid grid-cols-2 sm:mx-0 md:grid-cols-3 lg:grid-cols-4">
+        <div className="grid grid-cols-2 sm:mx-0 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {products.map((product: any) => (
             <div
               key={product.position}
-              className="group relative p-4 border-r border-b border-gray-200 sm:p-6"
+              className="group relative p-4 sm:p-6 bg-white rounded shadow"
             >
               {/* <img
                 src={product.image}

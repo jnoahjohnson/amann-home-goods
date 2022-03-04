@@ -2,6 +2,7 @@ import { LoaderFunction, useLoaderData, useParams } from "remix";
 import ProductGrid from "~/components/ProductGrid";
 import type { MetaFunction } from "remix";
 import { Link } from "react-router-dom";
+import Links from "~/components/Links";
 
 export const meta: MetaFunction = () => {
   return {
@@ -56,13 +57,14 @@ export default function PageComponent() {
 
   return (
     <div className="mx-auto max-w-6xl py-4">
+      <Links />
       <ProductGrid products={products} />
-      <ul className="w-full flex items-center justify-between pt-1 pb-4 max-w-7xl mx-auto overflow-hidden sm:px-6 lg:px-8 mt-2">
+      <ul className="w-full flex items-center justify-between pt-1 pb-4 max-w-7xl mx-auto overflow-hidden mt-2">
         {parseInt(page) > 1 ? (
           <li>
             <Link
               to={`/${parseInt(page) - 1}`}
-              className="px-2 py-1 bg-gray-300 text-gray-800 rounded"
+              className="px-2 py-1 bg-white text-lg text-gray-800 rounded"
             >
               {"<"} Previous Page
             </Link>
@@ -74,7 +76,7 @@ export default function PageComponent() {
           <li>
             <Link
               to={`/${parseInt(page) + 1}`}
-              className="px-2 py-1 bg-gray-300 text-gray-800 rounded"
+              className="px-2 py-1 bg-white text-lg text-gray-800 rounded"
             >
               Next Page &gt;
             </Link>
