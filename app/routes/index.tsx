@@ -2,6 +2,7 @@ import { LoaderFunction, useLoaderData } from "remix";
 import ProductGrid from "~/components/ProductGrid";
 import type { MetaFunction } from "remix";
 import { Link } from "react-router-dom";
+import FeaturedProduct from "~/components/FeaturedProduct";
 
 export const meta: MetaFunction = () => {
   return {
@@ -48,7 +49,11 @@ export default function Index() {
   console.log(numPages);
 
   return (
-    <div className="mx-auto max-w-6xl py-4">
+    <div className="mx-auto max-w-6xl py-4 px-6">
+      <div>
+        <FeaturedProduct />
+      </div>
+      <h1 className="font-bold text-4xl pt-6 pb-4">All Products</h1>
       <ProductGrid products={products} />
       <div className="max-w-7xl mx-auto overflow-hidden sm:px-6 lg:px-8 flex items-center justify-between mt-2">
         <div></div>

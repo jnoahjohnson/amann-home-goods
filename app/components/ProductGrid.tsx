@@ -82,7 +82,7 @@ export default function ProductGrid({ products }: { products: any }) {
   };
   return (
     <div className="bg-white">
-      <div className="max-w-7xl mx-auto overflow-hidden sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto overflow-hidden">
         <h2 className="sr-only">Products</h2>
 
         <div className="-mx-px border-l border-gray-200 grid grid-cols-2 sm:mx-0 md:grid-cols-3 lg:grid-cols-4">
