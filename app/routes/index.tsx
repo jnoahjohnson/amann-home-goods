@@ -52,8 +52,17 @@ export default function Index() {
 
   return (
     <div className="mx-auto max-w-6xl py-4 px-6">
-      <div>
-        <FeaturedProduct />
+      <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
+        <FeaturedProduct
+          title="Reusable Silicone Drinking Straws"
+          link="https://www.amazon.com/Reusable-Silicone-Drinking-Cleaning-Eco-Friendly/dp/B09PRPYLGG/ref=sr_1_6?m=A1EEYPEVF7DX6F&qid=1646346663&s=merchant-items&sr=1-6&tag=amannhomego04-20"
+          image="/images/straws.jpg"
+        />
+        <FeaturedProduct
+          title="Air Fryer Paper Liners"
+          link="https://www.amazon.com/dp/B09PYF7YFG?&linkCode=sl1&tag=amannhomego04-20&linkId=2ae2a165f73e3c2ad08166b6a92615da&language=en_US&ref_=as_li_ss_tl"
+          image="https://m.media-amazon.com/images/I/31b9CuuxsVL._AC_.jpg"
+        />
       </div>
       <Links />
       <h1 className="font-bold text-4xl pt-6 pb-4">All Products</h1>
