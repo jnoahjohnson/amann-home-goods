@@ -18,6 +18,7 @@ export let loader: LoaderFunction = async ({ params }) => {
   //   amazon_domain: "amazon.com",
   //   seller_id: "A1EEYPEVF7DX6F",
   // };
+  console.log("here!");
   let data = await fetch(
     `https://amazon-amann.fly.dev/products?page=${params.page}`
   );
@@ -28,8 +29,10 @@ export let loader: LoaderFunction = async ({ params }) => {
 
   let body = JSON.stringify({
     products: jsonData.seller_products ?? null,
-    numPages: jsonData.pagination.total_pages,
+    numPages: 2,
   });
+
+  console.log(body);
 
   return new Response(body, {
     headers: {

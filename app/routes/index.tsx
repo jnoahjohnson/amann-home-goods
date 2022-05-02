@@ -28,8 +28,10 @@ export let loader: LoaderFunction = async () => {
 
   let body = JSON.stringify({
     products: jsonData.seller_products ?? null,
-    numPages: jsonData.pagination.total_pages,
+    numPages: 2,
   });
+
+  console.log("body", body);
 
   return new Response(body, {
     headers: {
