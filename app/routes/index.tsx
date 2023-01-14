@@ -1,10 +1,13 @@
-import { LoaderFunction, useLoaderData } from "remix";
+import type {
+  MetaFunction,
+  LoaderArgs,
+  HeadersFunction,
+} from "@remix-run/node";
 import ProductGrid from "~/components/ProductGrid";
-import type { MetaFunction } from "remix";
 import { Link } from "react-router-dom";
 import FeaturedProduct from "~/components/FeaturedProduct";
-import LinkCard from "~/components/LinkCard";
 import Links from "~/components/Links";
+import { useLoaderData } from "@remix-run/react";
 
 export const meta: MetaFunction = () => {
   return {
@@ -13,14 +16,20 @@ export const meta: MetaFunction = () => {
   };
 };
 
-export let loader: LoaderFunction = async () => {
-  // const params = {
-  //   api_key: "B27347C99C1242A5B81DD3FBB4636A94",
-  //   type: "seller_products",
-  //   amazon_domain: "amazon.com",
-  //   seller_id: "A1EEYPEVF7DX6F",
-  // };
-  let data = await fetch(`https://amazon-amann.fly.dev/products?page=1`);
+export let loader = async ({ request }: LoaderArgs) => {
+  const params = {
+    api_key: "09983A5D1D46484A86D22881C205957A",
+    type: "seller_products",
+    amazon_domain: "amazon.com",
+    seller_id: "A1EEYPEVF7DX6F",
+  };
+
+  let url = new URL(request.url);
+  let page = url.searchParams.get("page") ?? "1";
+
+  let data = await fetch(
+    `https://api.rainforestapi.com/request?api_key=${params.api_key}&type=${params.type}&amazon_domain=${params.amazon_domain}&seller_id=${params.seller_id}&page=${page}`
+  );
 
   let jsonData = await data.json();
 
@@ -28,7 +37,7 @@ export let loader: LoaderFunction = async () => {
 
   let body = JSON.stringify({
     products: jsonData.seller_products ?? null,
-    numPages: 2,
+    numPages: 1,
   });
 
   console.log("body", body);
@@ -36,19 +45,19 @@ export let loader: LoaderFunction = async () => {
   return new Response(body, {
     headers: {
       "Content-Type": "application/json",
-      "Cache-Control": "s-maxage=86400, max-age=86400, public",
+      "Cache-Control": `public, max-age=${60 * 10}, s-maxage=${60 * 60 * 24}`,
     },
   });
 };
 
-export function headers() {
+export let headers: HeadersFunction = ({ loaderHeaders }) => {
   return {
-    "Cache-Control": "max-age=3600, s-maxage=28800",
+    "Cache-Control": loaderHeaders.get("Cache-Control") || "",
   };
-}
+};
 
 export default function Index() {
-  let { products, numPages } = useLoaderData();
+  let { products, numPages } = useLoaderData<typeof loader>();
 
   console.log(numPages);
 
