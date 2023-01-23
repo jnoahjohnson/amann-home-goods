@@ -3,11 +3,13 @@ import type {
   LoaderArgs,
   HeadersFunction,
 } from "@remix-run/node";
+import { json } from "@remix-run/node";
 import ProductGrid from "~/components/ProductGrid";
 import { Link } from "react-router-dom";
 import FeaturedProduct from "~/components/FeaturedProduct";
 import Links from "~/components/Links";
 import { useLoaderData } from "@remix-run/react";
+import { getDataFromRedis, saveToRedis } from "~/services/redis.server";
 
 export const meta: MetaFunction = () => {
   return {
@@ -17,6 +19,22 @@ export const meta: MetaFunction = () => {
 };
 
 export let loader = async ({ request }: LoaderArgs) => {
+  const cacheData = await getDataFromRedis();
+
+  if (cacheData) {
+    const responseBody = {
+      products: cacheData,
+      numPages: 1,
+    };
+
+    return new Response(JSON.stringify(responseBody), {
+      headers: {
+        "Content-Type": "application/json",
+        "Cache-Control": `public, max-age=${60 * 10}, s-maxage=${60 * 60 * 24}`,
+      },
+    });
+  }
+
   const params = {
     api_key: "09983A5D1D46484A86D22881C205957A",
     type: "seller_products",
@@ -33,14 +51,10 @@ export let loader = async ({ request }: LoaderArgs) => {
 
   let jsonData = await data.json();
 
-  console.log(jsonData);
-
   let body = JSON.stringify({
     products: jsonData.seller_products ?? null,
     numPages: 1,
   });
-
-  console.log("body", body);
 
   return new Response(body, {
     headers: {
@@ -59,7 +73,18 @@ export let headers: HeadersFunction = ({ loaderHeaders }) => {
 export default function Index() {
   let { products, numPages } = useLoaderData<typeof loader>();
 
-  console.log(numPages);
+  if (products === undefined || products === null) {
+    return (
+      <div className="text-center">
+        <a
+          href="https://www.amazon.com/s?k=Amann+Home+Goods"
+          className="px-2 py-1 bg-white text-gray-800 rounded text-lg"
+        >
+          Checkout the Amazon Store
+        </a>
+      </div>
+    );
+  }
 
   return (
     <div className="mx-auto max-w-6xl py-4 px-6">
