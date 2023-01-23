@@ -1,4 +1,3 @@
-"use strict";
 var __create = Object.create;
 var __defProp = Object.defineProperty;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
@@ -18,17 +17,9 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
   mod
 )), __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: !0 }), mod);
 
-// server.js
-var server_exports = {};
-__export(server_exports, {
-  default: () => server_default
-});
-module.exports = __toCommonJS(server_exports);
-var import_vercel = require("@remix-run/vercel");
-
-// server-entry-module:@remix-run/dev/server-build
-var server_build_exports = {};
-__export(server_build_exports, {
+// <stdin>
+var stdin_exports = {};
+__export(stdin_exports, {
   assets: () => assets_manifest_default,
   assetsBuildDirectory: () => assetsBuildDirectory,
   entry: () => entry,
@@ -36,20 +27,75 @@ __export(server_build_exports, {
   publicPath: () => publicPath,
   routes: () => routes
 });
+module.exports = __toCommonJS(stdin_exports);
 
 // app/entry.server.tsx
 var entry_server_exports = {};
 __export(entry_server_exports, {
   default: () => handleRequest
 });
-var import_react = require("@remix-run/react"), import_server = require("react-dom/server"), import_jsx_runtime = require("react/jsx-runtime");
+var import_stream = require("stream"), import_node = require("@remix-run/node"), import_react = require("@remix-run/react"), import_isbot = __toESM(require("isbot")), import_server = require("react-dom/server"), import_jsx_runtime = require("react/jsx-runtime"), ABORT_DELAY = 5e3;
 function handleRequest(request, responseStatusCode, responseHeaders, remixContext) {
-  let markup = (0, import_server.renderToString)(
-    /* @__PURE__ */ (0, import_jsx_runtime.jsx)(import_react.RemixServer, { context: remixContext, url: request.url })
+  return (0, import_isbot.default)(request.headers.get("user-agent")) ? handleBotRequest(
+    request,
+    responseStatusCode,
+    responseHeaders,
+    remixContext
+  ) : handleBrowserRequest(
+    request,
+    responseStatusCode,
+    responseHeaders,
+    remixContext
   );
-  return responseHeaders.set("Content-Type", "text/html"), new Response("<!DOCTYPE html>" + markup, {
-    headers: responseHeaders,
-    status: responseStatusCode
+}
+function handleBotRequest(request, responseStatusCode, responseHeaders, remixContext) {
+  return new Promise((resolve, reject) => {
+    let didError = !1, { pipe, abort } = (0, import_server.renderToPipeableStream)(
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)(import_react.RemixServer, { context: remixContext, url: request.url }),
+      {
+        onAllReady() {
+          let body = new import_stream.PassThrough();
+          responseHeaders.set("Content-Type", "text/html"), resolve(
+            new import_node.Response(body, {
+              headers: responseHeaders,
+              status: didError ? 500 : responseStatusCode
+            })
+          ), pipe(body);
+        },
+        onShellError(error) {
+          reject(error);
+        },
+        onError(error) {
+          didError = !0, console.error(error);
+        }
+      }
+    );
+    setTimeout(abort, ABORT_DELAY);
+  });
+}
+function handleBrowserRequest(request, responseStatusCode, responseHeaders, remixContext) {
+  return new Promise((resolve, reject) => {
+    let didError = !1, { pipe, abort } = (0, import_server.renderToPipeableStream)(
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)(import_react.RemixServer, { context: remixContext, url: request.url }),
+      {
+        onShellReady() {
+          let body = new import_stream.PassThrough();
+          responseHeaders.set("Content-Type", "text/html"), resolve(
+            new import_node.Response(body, {
+              headers: responseHeaders,
+              status: didError ? 500 : responseStatusCode
+            })
+          ), pipe(body);
+        },
+        onShellError(err) {
+          reject(err);
+        },
+        onError(error) {
+          didError = !0, console.error(error);
+        }
+      }
+    );
+    setTimeout(abort, ABORT_DELAY);
   });
 }
 
@@ -1151,7 +1197,7 @@ function ErrorBoundary2() {
 var assets_manifest_default = { version: "5afcc44c", entry: { module: "/build/entry.client-SOYSUZME.js", imports: ["/build/_shared/chunk-4BMLT7ZF.js", "/build/_shared/chunk-57ASHUJG.js", "/build/_shared/chunk-4KDJQ4FX.js"] }, routes: { root: { id: "root", parentId: void 0, path: "", index: void 0, caseSensitive: void 0, module: "/build/root-URKZZBCY.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/$page": { id: "routes/$page", parentId: "root", path: ":page", index: void 0, caseSensitive: void 0, module: "/build/routes/$page-7ETP7AVL.js", imports: ["/build/_shared/chunk-676XT6HJ.js"], hasAction: !1, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !0 }, "routes/index": { id: "routes/index", parentId: "root", path: void 0, index: !0, caseSensitive: void 0, module: "/build/routes/index-SY3R6HL2.js", imports: ["/build/_shared/chunk-676XT6HJ.js"], hasAction: !1, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !0 }, "routes/test-page": { id: "routes/test-page", parentId: "root", path: "test-page", index: void 0, caseSensitive: void 0, module: "/build/routes/test-page-OY3ER7FD.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 } }, url: "/build/manifest-5AFCC44C.js" };
 
 // server-entry-module:@remix-run/dev/server-build
-var assetsBuildDirectory = "public/build", future = { v2_meta: !1 }, publicPath = "/build/", entry = { module: entry_server_exports }, routes = {
+var assetsBuildDirectory = "build", future = { v2_meta: !1 }, publicPath = "/build/", entry = { module: entry_server_exports }, routes = {
   root: {
     id: "root",
     parentId: void 0,
@@ -1185,8 +1231,12 @@ var assetsBuildDirectory = "public/build", future = { v2_meta: !1 }, publicPath 
     module: routes_exports
   }
 };
-
-// server.js
-var server_default = (0, import_vercel.createRequestHandler)({ build: server_build_exports, mode: "production" });
 // Annotate the CommonJS export names for ESM import in node:
-0 && (module.exports = {});
+0 && (module.exports = {
+  assets,
+  assetsBuildDirectory,
+  entry,
+  future,
+  publicPath,
+  routes
+});
